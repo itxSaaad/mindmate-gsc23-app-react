@@ -4,9 +4,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faBell } from "@fortawesome/free-solid-svg-icons";
 
 function NavbarCmp() {
+  const loginHandler = () => {
+    console.log("Login Handler");
+  };
   return (
-    <Navbar bg="light" expand="lg">
-      <Navbar.Brand href="#">MindMate</Navbar.Brand>
+    <Navbar bg="light" fixed="top" expand="lg" className="p-2 shadow">
+      <Navbar.Brand className="fw-bold px-3" href="#">
+        MindMate
+      </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="me-auto">
@@ -41,7 +46,11 @@ function NavbarCmp() {
             <NavDropdown.Divider />
             <NavDropdown.Item href="#logout">Logout</NavDropdown.Item>
           </NavDropdown>
-          <Button variant="outline-primary" className="ml-2">
+          <Button
+            variant="outline-primary"
+            className="ml-2"
+            onClick={loginHandler}
+          >
             Login / Signup
           </Button>
         </Nav>

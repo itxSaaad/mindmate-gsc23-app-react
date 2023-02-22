@@ -1,12 +1,14 @@
 import React from "react";
+import FAQHeader from "../components/FAQHeader";
 import HeroHome from "../components/HeroHome";
 import Navbar from "../components/NavbarCmp";
 
 const HomeScreen = () => {
   return (
     <>
-      <Navbar fixed="top" />
+      <Navbar />
       <HeroHome />
+      <FAQHeader />{" "}
     </>
   );
 };
