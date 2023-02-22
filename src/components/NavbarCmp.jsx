@@ -1,19 +1,12 @@
 import React from "react";
-import {
-  Navbar,
-  Nav,
-  NavDropdown,
-  Form,
-  FormControl,
-  Button,
-} from "react-bootstrap";
+import { Navbar, Nav, NavDropdown, Form, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faBell } from "@fortawesome/free-solid-svg-icons";
 
 function NavbarCmp() {
   return (
     <Navbar bg="light" expand="lg">
-      <Navbar.Brand href="#home">MindMate</Navbar.Brand>
+      <Navbar.Brand href="#">MindMate</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="me-auto">
@@ -23,12 +16,17 @@ function NavbarCmp() {
         </Nav>
         <Form className="d-flex">
           <Form.Control
+            className="me-sm-2"
             type="search"
             placeholder="Search"
-            className="me-2"
-            aria-label="Search"
           />
-          <Button variant="outline-success">Search</Button>
+          <Button
+            variant="outline-secondary"
+            className="my-2 my-sm-0"
+            type="submit"
+          >
+            Search
+          </Button>
         </Form>
         <Nav>
           <Nav.Link href="#notifications">
