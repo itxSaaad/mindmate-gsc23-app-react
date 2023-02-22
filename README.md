@@ -90,8 +90,8 @@ Don't forget to give the project a star! Thanks again!
 
 ## Contact
 
-Muhammad Saad - [@itxSaaad](https://twitter.com/itxSaaad) - saadstudent.cs@gmail.com
-Seher Kanwal - seherkanwal156@gmail.com
+- Muhammad Saad - [@itxSaaad](https://twitter.com/itxSaaad) - saadstudent.cs@gmail.com
+- Seher Kanwal - seherkanwal156@gmail.com
 
 Project Link: [hhttps://github.com/itxSaaad/MindMate-GSC23](https://github.com/itxSaaad/MindMate-GSC23)
 
