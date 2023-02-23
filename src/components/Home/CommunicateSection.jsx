@@ -9,8 +9,7 @@ const CommunicateSection = () => {
       className="d-flex min-vh-100"
       lc-helper="background"
       style={{
-        backgroundImage:
-          "url('src/assets/img/brooke-cagle--uHVRvDr7pg-unsplash.jpg')",
+        backgroundImage: "url('/img/brooke-cagle--uHVRvDr7pg-unsplash.jpg')",
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
@@ -38,16 +37,16 @@ const CommunicateSection = () => {
         </div>
 
         <div className="d-grid gap-2 d-sm-flex justify-content-sm-center">
-          <Button
-            type="button"
-            variant="light"
-            size="lg"
-            className="px-4 gap-3"
-          >
-            <a href="#testimonial" className="text-decoration-none text-black">
+          <a href="#testimonial" className="text-decoration-none text-black">
+            <Button
+              type="button"
+              variant="light"
+              size="lg"
+              className="px-4 gap-3"
+            >
               <FontAwesomeIcon icon={faArrowDown} />
-            </a>
-          </Button>
+            </Button>
+          </a>
         </div>
       </div>
     </section>

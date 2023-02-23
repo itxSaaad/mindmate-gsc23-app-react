@@ -10,7 +10,7 @@ function NavbarCmp() {
   return (
     <Navbar bg="light" expand="lg" className="p-2 shadow">
       <Navbar.Brand className="fw-bold px-3" href="#">
-        MindMate
+        <Nav.Link href="/">MindMate</Nav.Link>
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">

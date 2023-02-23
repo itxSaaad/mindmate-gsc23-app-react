@@ -1,8 +1,10 @@
 import React from "react";
-import CommunicateSection from "../components/CommunicateSection";
-import FAQSection from "../components/FAQSection";
-import HeroHome from "../components/HeroHome";
-import TestimonialSection from "../components/TestimonialSection";
+import { BrowserRouter as Router } from "react-router-dom";
+
+import CommunicateSection from "../components/Home/CommunicateSection";
+import FAQSection from "../components/Home/FAQSection";
+import TestimonialSection from "../components/Home/TestimonialSection";
+import HeroHome from "../components/Home/HeroHome";
 
 const HomeScreen = () => {
   return (

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowDown } from "@fortawesome/free-solid-svg-icons";
@@ -9,8 +10,7 @@ const HeroHome = () => {
       className="d-flex min-vh-100"
       lc-helper="background"
       style={{
-        backgroundImage:
-          "url('src/assets/img/kelly-sikkema-XX2WTbLr3r8-unsplash.jpg')",
+        backgroundImage: "url('/img/kelly-sikkema-XX2WTbLr3r8-unsplash.jpg')",
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
@@ -41,14 +41,16 @@ const HeroHome = () => {
           </div>
         </div>
         <div className="d-grid gap-2 d-sm-flex justify-content-sm-center">
-          <Button
-            type="button"
-            variant="light"
-            size="lg"
-            className="px-4 gap-3"
-          >
-            Book an Appointment
-          </Button>
+          <Link to="/appointments">
+            <Button
+              type="button"
+              variant="light"
+              size="lg"
+              className="px-4 gap-3"
+            >
+              Book an Appointment
+            </Button>
+          </Link>
           <Button
             type="button"
             variant="outline-light"
@@ -60,16 +62,16 @@ const HeroHome = () => {
         </div>
         <br />
         <div className="d-grid gap-2 d-sm-flex justify-content-sm-center">
-          <Button
-            type="button"
-            variant="light"
-            size="lg"
-            className="px-4 gap-3"
-          >
-            <a href="#faq" className="text-decoration-none text-black">
+          <a href="#faq" className="text-decoration-none text-black">
+            <Button
+              type="button"
+              variant="light"
+              size="lg"
+              className="px-4 gap-3"
+            >
               <FontAwesomeIcon icon={faArrowDown} />
-            </a>
-          </Button>
+            </Button>
+          </a>
         </div>
       </div>
     </section>
