@@ -9,7 +9,7 @@ const FAQSection = () => {
     >
       <div className="lc-block mb-4">
         <div editable="rich">
-          <h1 className="display-6 fw-bold mb-3">Frequently Asked Questions</h1>
+          <h1 className="display-4 fw-bold mb-3">Frequently Asked Questions</h1>
         </div>
       </div>
 

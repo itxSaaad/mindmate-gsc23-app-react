@@ -44,7 +44,7 @@ const CommunicateSection = () => {
             size="lg"
             className="px-4 gap-3"
           >
-            <a href="#" className="text-decoration-none text-black">
+            <a href="#testimonial" className="text-decoration-none text-black">
               <FontAwesomeIcon icon={faArrowDown} />
             </a>
           </Button>
