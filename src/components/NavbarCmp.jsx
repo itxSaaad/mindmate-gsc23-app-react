@@ -8,7 +8,7 @@ function NavbarCmp() {
     console.log("Login Handler");
   };
   return (
-    <Navbar bg="light" fixed="top" expand="lg" className="p-2 shadow">
+    <Navbar bg="light" expand="lg" className="p-2 shadow">
       <Navbar.Brand className="fw-bold px-3" href="#">
         MindMate
       </Navbar.Brand>

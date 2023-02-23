@@ -3,14 +3,14 @@ import { Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowDown } from "@fortawesome/free-solid-svg-icons";
 
-const HeroHome = () => {
+const CommunicateSection = () => {
   return (
     <section
       className="d-flex min-vh-100"
       lc-helper="background"
       style={{
         backgroundImage:
-          "url('src/assets/img/kelly-sikkema-XX2WTbLr3r8-unsplash.jpg')",
+          "url('src/assets/img/brooke-cagle--uHVRvDr7pg-unsplash.jpg')",
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
@@ -23,7 +23,7 @@ const HeroHome = () => {
         <div className="lc-block mb-4">
           <div editable="rich">
             <h1 className="display-4 fw-bold mb-3 mt-5">
-              Mental Health Matters!
+              Communicate your way
             </h1>
           </div>
         </div>
@@ -31,17 +31,12 @@ const HeroHome = () => {
         <div className="lc-block">
           <div editable="rich">
             <p className="lead text-white mb-5">
-              Are you Feeling Depressed, Lonely or getting Wrong temptations
-              like suicidal thoughts then youre at a good place. Here you can
-              Find Articles regarding your Mental State or you could book an
-              Appointment with a Specialist
-            </p>
-
-            <p className="lead text-white mb-5">
-              Get the help you need for a healthy mind and body.
+              Talk to your therapist however you feel comfortable — text, chat,
+              phone, or video.
             </p>
           </div>
         </div>
+
         <div className="d-grid gap-2 d-sm-flex justify-content-sm-center">
           <Button
             type="button"
@@ -49,26 +44,7 @@ const HeroHome = () => {
             size="lg"
             className="px-4 gap-3"
           >
-            Book an Appointment
-          </Button>
-          <Button
-            type="button"
-            variant="outline-light"
-            size="lg"
-            className="px-4"
-          >
-            Read Articles
-          </Button>
-        </div>
-        <br />
-        <div className="d-grid gap-2 d-sm-flex justify-content-sm-center">
-          <Button
-            type="button"
-            variant="light"
-            size="lg"
-            className="px-4 gap-3"
-          >
-            <a href="#faq" className="text-decoration-none text-black">
+            <a href="#" className="text-decoration-none text-black">
               <FontAwesomeIcon icon={faArrowDown} />
             </a>
           </Button>
@@ -78,4 +54,4 @@ const HeroHome = () => {
   );
 };
 
-export default HeroHome;
+export default CommunicateSection;

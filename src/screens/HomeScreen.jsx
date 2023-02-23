@@ -1,14 +1,14 @@
 import React from "react";
-import FAQHeader from "../components/FAQHeader";
-import Footer from "../components/Footer";
+import CommunicateSection from "../components/CommunicateSection";
+import FAQSection from "../components/FAQSection";
 import HeroHome from "../components/HeroHome";
-import Navbar from "../components/NavbarCmp";
 
 const HomeScreen = () => {
   return (
     <>
       <HeroHome />
-      <FAQHeader />
+      <FAQSection />
+      <CommunicateSection />
     </>
   );
 };
