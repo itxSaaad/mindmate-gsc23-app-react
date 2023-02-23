@@ -8,7 +8,7 @@ const HeroHome = () => {
       lc-helper="background"
       style={{
         backgroundImage:
-          "url('../src/assets/img/kelly-sikkema-XX2WTbLr3r8-unsplash.jpg')",
+          "url('src/assets/img/kelly-sikkema-XX2WTbLr3r8-unsplash.jpg')",
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
@@ -20,7 +20,9 @@ const HeroHome = () => {
       <div className="align-self-center text-center text-light col-md-8 offset-md-2">
         <div className="lc-block mb-4">
           <div editable="rich">
-            <h1 className="display-4 fw-bold mb-3">Mental Health Matters!</h1>
+            <h1 className="display-4 fw-bold mb-3 mt-5">
+              Mental Health Matters!
+            </h1>
           </div>
         </div>
 

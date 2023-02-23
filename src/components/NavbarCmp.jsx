@@ -15,9 +15,9 @@ function NavbarCmp() {
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="me-auto">
-          <Nav.Link href="#home">Home</Nav.Link>
-          <Nav.Link href="#appointments">Appointments</Nav.Link>
-          <Nav.Link href="#articles">Articles</Nav.Link>
+          <Nav.Link href="/">Home</Nav.Link>
+          <Nav.Link href="/appointments">Appointments</Nav.Link>
+          <Nav.Link href="/articles">Articles</Nav.Link>
         </Nav>
         <Form className="d-flex">
           <Form.Control
