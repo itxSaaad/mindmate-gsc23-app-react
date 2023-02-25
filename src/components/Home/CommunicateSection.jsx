@@ -1,13 +1,9 @@
 import React from "react";
-import { Button } from "react-bootstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowDown } from "@fortawesome/free-solid-svg-icons";
 
 const CommunicateSection = () => {
   return (
     <section
-      className="d-flex min-vh-100"
-      lc-helper="background"
+      className="h-screen flex items-center"
       style={{
         backgroundImage: "url('/img/brooke-cagle--uHVRvDr7pg-unsplash.jpg')",
         backgroundSize: "cover",
@@ -18,35 +14,26 @@ const CommunicateSection = () => {
         backgroundOpacity: "0.9",
       }}
     >
-      <div className="align-self-center text-center text-light col-md-8 offset-md-2">
-        <div className="lc-block mb-4">
-          <div editable="rich">
-            <h1 className="display-4 fw-bold mb-3 mt-5">
-              Communicate your way
-            </h1>
+      <div className="mx-auto max-w-screen-xl px-4 py-8 sm:py-12 sm:px-6 lg:py-16 lg:px-8">
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-16">
+          <div className="relative h-64 overflow-hidden rounded-lg sm:h-80 lg:order-last lg:h-full">
+            <img
+              alt="Party"
+              src="/img/brooke-cagle--uHVRvDr7pg-unsplash.jpg"
+              className="absolute inset-0 h-full w-full object-cover"
+            />
           </div>
-        </div>
 
-        <div className="lc-block">
-          <div editable="rich">
-            <p className="lead text-white mb-5">
+          <div className="lg:py-24  text-white">
+            <h2 className="text-4xl font-bold tracking-tight sm:text-5xl">
+              Communicate your way
+            </h2>
+
+            <p className="mt-4">
               Talk to your therapist however you feel comfortable — text, chat,
               phone, or video.
             </p>
           </div>
-        </div>
-
-        <div className="d-grid gap-2 d-sm-flex justify-content-sm-center">
-          <a href="#testimonial" className="text-decoration-none text-black">
-            <Button
-              type="button"
-              variant="light"
-              size="lg"
-              className="px-4 gap-3"
-            >
-              <FontAwesomeIcon icon={faArrowDown} />
-            </Button>
-          </a>
         </div>
       </div>
     </section>

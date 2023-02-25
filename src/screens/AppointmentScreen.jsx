@@ -2,11 +2,11 @@ import React from "react";
 
 const AppointmentScreen = () => {
   return (
-    <section className="d-flex flex-column m-auto p-5 vh-100 align-items-center ">
-      <div className="lc-block mb-4">
-        <div editable="rich">
-          <h1 className="display-4 fw-bold mb-3 ">Book your Appointment</h1>
-        </div>
+    <section className="h-screen flex justify-center items-center">
+      <div className="py-auto px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-12">
+        <h1 className="text-6xl font-bold tracking-tight sm:text-6xl mb-4 text-black">
+          Make your Appoinment Now!
+        </h1>
       </div>
     </section>
   );

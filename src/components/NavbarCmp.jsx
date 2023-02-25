@@ -1,62 +1,145 @@
-import React from "react";
-import { Navbar, Nav, NavDropdown, Form, Button } from "react-bootstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser, faBell } from "@fortawesome/free-solid-svg-icons";
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
-function NavbarCmp() {
-  const loginHandler = () => {
-    console.log("Login Handler");
-  };
+const NavbarCmp = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  // For The Animated Scroll Up Behaviour of Navbar
+  const [prevScrollPos, setPrevScrollPos] = useState(0);
+  const [visible, setVisible] = useState(true);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollPos = window.scrollY;
+      setVisible(prevScrollPos > currentScrollPos || currentScrollPos < 10);
+      setPrevScrollPos(currentScrollPos);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [prevScrollPos, visible, setVisible]);
+
   return (
-    <Navbar bg="light" expand="lg" className="p-2 shadow">
-      <Navbar.Brand className="fw-bold px-3" href="#">
-        <Nav.Link href="/">MindMate</Nav.Link>
-      </Navbar.Brand>
-      <Navbar.Toggle aria-controls="basic-navbar-nav" />
-      <Navbar.Collapse id="basic-navbar-nav">
-        <Nav className="me-auto">
-          <Nav.Link href="/">Home</Nav.Link>
-          <Nav.Link href="/appointments">Appointments</Nav.Link>
-          <Nav.Link href="/articles">Articles</Nav.Link>
-        </Nav>
-        <Form className="d-flex">
-          <Form.Control
-            className="me-sm-2"
-            type="search"
-            placeholder="Search"
-          />
-          <Button
-            variant="outline-secondary"
-            className="my-2 my-sm-0"
-            type="submit"
+    <nav
+      className={`fixed bg-white w-screen shadow-md z-50 transition-all duration-500 ${
+        visible ? "" : "transform -translate-y-full"
+      }`}
+    >
+      <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
+        <div className="relative flex items-center justify-between h-16">
+          <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
+            {/* Mobile menu button*/}
+            <button
+              type="button"
+              className="inline-flex items-center justify-center p-2 rounded-md text-gray-600 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+              aria-controls="mobile-menu"
+              aria-expanded="false"
+              onClick={() => setIsOpen(!isOpen)}
+            >
+              <span className="sr-only">Open main menu</span>
+              {/* Icon when menu is closed. */}
+              {/* Menu open: "hidden", Menu closed: "block" */}
+              <svg
+                className={`${isOpen ? "hidden" : "block"} h-6 w-6`}
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              </svg>
+              {/* Icon when menu is open. */}
+              {/* Menu open: "block", Menu closed: "hidden" */}
+              <svg
+                className={`${isOpen ? "block" : "hidden"} h-6 w-6`}
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
+          </div>
+          <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
+            <div className="flex-shrink-0 flex items-center">
+              <Link
+                to="/"
+                className="text-2xl font-semibold hover:text-slate-600"
+              >
+                MindMate
+              </Link>
+            </div>
+            <div className="hidden sm:block sm:ml-6">
+              <div className="flex space-x-4">
+                {/* Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" */}
+                <Link
+                  to="/"
+                  className="text-gray-600 block px-3 py-2 text-base hover:text-black hover:font-medium"
+                >
+                  Home
+                </Link>
+                <Link
+                  to="/appointments"
+                  className="text-gray-600 block px-3 py-2 text-base hover:text-black hover:font-medium"
+                >
+                  Appointment
+                </Link>
+                <Link
+                  to="/articles"
+                  className="text-gray-600 block px-3 py-2 text-base hover:text-black hover:font-medium"
+                >
+                  Articles
+                </Link>
+              </div>
+            </div>
+          </div>
+          <div className="flex justify-end">
+            <Link to="/login">
+              <button className="bg-teal-600  hover:bg-teal-700  text-white py-2 px-4 rounded">
+                Login / Register
+              </button>
+            </Link>
+          </div>
+        </div>
+      </div>
+      {/* Mobile menu, show/hide based on menu state. */}
+      <div className={`${isOpen ? "block" : "hidden"} sm:hidden`}>
+        <div className="px-2 pt-2 pb-3 space-y-1">
+          {/* Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" */}
+          <Link
+            to="/"
+            className="text-gray-500 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
           >
-            Search
-          </Button>
-        </Form>
-        <Nav>
-          <Nav.Link href="#notifications">
-            <FontAwesomeIcon icon={faBell}></FontAwesomeIcon>
-          </Nav.Link>
-          <NavDropdown
-            title={<FontAwesomeIcon icon={faUser}></FontAwesomeIcon>}
-            id="basic-nav-dropdown"
+            Home
+          </Link>
+          <Link
+            to="/appointments"
+            className="text-gray-500 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
           >
-            <NavDropdown.Item href="#profile">Profile</NavDropdown.Item>
-            <NavDropdown.Item href="#settings">Settings</NavDropdown.Item>
-            <NavDropdown.Divider />
-            <NavDropdown.Item href="#logout">Logout</NavDropdown.Item>
-          </NavDropdown>
-          <Button
-            variant="outline-primary"
-            className="ml-2"
-            onClick={loginHandler}
+            Appointment
+          </Link>
+          <Link
+            to="/articles"
+            className="text-gray-500 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
           >
-            Login / Signup
-          </Button>
-        </Nav>
-      </Navbar.Collapse>
-    </Navbar>
+            Articles
+          </Link>
+        </div>
+      </div>
+    </nav>
   );
-}
+};
 
 export default NavbarCmp;

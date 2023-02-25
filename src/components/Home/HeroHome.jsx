@@ -1,14 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Button } from "react-bootstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowDown } from "@fortawesome/free-solid-svg-icons";
 
 const HeroHome = () => {
   return (
     <section
-      className="d-flex min-vh-100"
-      lc-helper="background"
+      className="min-h-screen flex justify-center items-center"
       style={{
         backgroundImage: "url('/img/kelly-sikkema-XX2WTbLr3r8-unsplash.jpg')",
         backgroundSize: "cover",
@@ -19,59 +15,36 @@ const HeroHome = () => {
         backgroundOpacity: "0.9",
       }}
     >
-      <div className="align-self-center text-center text-light col-md-8 offset-md-2">
-        <div className="lc-block mb-4">
-          <div editable="rich">
-            <h1 className="display-4 fw-bold mb-3 ">Mental Health Matters!</h1>
-          </div>
-        </div>
-
-        <div className="lc-block">
-          <div editable="rich">
-            <p className="lead text-white mb-5">
-              Are you Feeling Depressed, Lonely or getting Wrong temptations
-              like suicidal thoughts then youre at a good place. Here you can
-              Find Articles regarding your Mental State or you could book an
-              Appointment with a Specialist
-            </p>
-
-            <p className="lead text-white mb-5">
-              Get the help you need for a healthy mind and body.
-            </p>
-          </div>
-        </div>
-        <div className="d-grid gap-2 d-sm-flex justify-content-sm-center">
+      <div className="py-auto px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-12">
+        <h1 className="text-6xl font-bold tracking-tight sm:text-6xl mb-4 text-white pt-20">
+          Mental Health Matters!
+        </h1>
+        <p className="mb-8 text-xl font-normal text-gray-300 lg:text-2xl sm:px-16 xl:px-48">
+          Are you Feeling Depressed, Lonely or getting Wrong temptations like
+          suicidal thoughts then youre at a good place. Here you can Find
+          Articles regarding your Mental State or you could book an Appointment
+          with a Specialist
+        </p>
+        <p className="mb-8 text-xl font-normal text-gray-300 lg:text-2xl sm:px-16 xl:px-48">
+          Get the help you need for a healthy mind and body.
+        </p>
+        <div className="flex flex-col mb-8 lg:mb-16 space-y-4 sm:flex-row sm:justify-center sm:space-y-0 sm:space-x-4">
           <Link to="/appointments">
-            <Button
+            <button
               type="button"
-              variant="light"
-              size="lg"
-              className="px-4 gap-3"
+              className="rounded-lg border border-white bg-white px-5 py-2.5 text-center text-sm font-medium text-gray-500 shadow-none transition-all hover:bg-gray-100 hover:text-gray-500"
             >
-              Book an Appointment
-            </Button>
+              Get in Touch
+            </button>
           </Link>
-          <Button
-            type="button"
-            variant="outline-light"
-            size="lg"
-            className="px-4"
-          >
-            Read Articles
-          </Button>
-        </div>
-        <br />
-        <div className="d-grid gap-2 d-sm-flex justify-content-sm-center">
-          <a href="#faq" className="text-decoration-none text-black">
-            <Button
+          <Link to="/articles">
+            <button
               type="button"
-              variant="light"
-              size="lg"
-              className="px-4 gap-3"
+              className="rounded-lg border border-white bg-transparent px-5 py-2.5 text-center text-sm font-medium text-white shadow-none transition-all hover:bg-gray-100 hover:text-gray-500"
             >
-              <FontAwesomeIcon icon={faArrowDown} />
-            </Button>
-          </a>
+              Read Articles
+            </button>
+          </Link>
         </div>
       </div>
     </section>
