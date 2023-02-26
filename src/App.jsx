@@ -7,6 +7,8 @@ import Footer from "./components/Footer";
 
 import HomeScreen from "./screens/HomeScreen";
 import AppointmentScreen from "./screens/AppointmentScreen";
+import LoginScreen from "./screens/LoginScreen";
+import RegisterScreen from "./screens/RegisterScreen";
 
 function App() {
   return (
@@ -14,6 +16,8 @@ function App() {
       <Router>
         <NavbarCmp />
         <Routes>
+          <Route path="/register" element={<RegisterScreen />} />
+          <Route path="/login" element={<LoginScreen />} />
           <Route path="/appointments" element={<AppointmentScreen />} />
           <Route path="/" exact element={<HomeScreen />} />
         </Routes>
