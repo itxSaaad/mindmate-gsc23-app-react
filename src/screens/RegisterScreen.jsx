@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { auth } from "../../firebase";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  GoogleAuthProvider,
+  signInWithPopup,
+} from "firebase/auth";
+import { auth } from "../firebase";
 
 const RegisterScreen = () => {
   const navigate = useNavigate();
@@ -9,9 +13,46 @@ const RegisterScreen = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [cnfPassword, setCnfPassword] = useState("");
 
-  const RegisterHandler = (e) => {
+  const handleGoogleSignUp = () => {
+    const provider = new GoogleAuthProvider();
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        const user = result.user;
+        console.log("User signed up with Google successfully:", user);
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        const email = error.email;
+        const credential = GoogleAuthProvider.credentialFromError(error);
+        console.log(errorCode, errorMessage, email, credential);
+      });
+  };
+
+  const RegisterHandler = async (e) => {
     e.preventDefault();
+    if (password !== confirmPassword) {
+      alert("Passwords do not match");
+      return;
+    }
+
+    await createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        console.log(user);
+        navigate("/login");
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        alert(errorMessage);
+        console.log(errorCode, errorMessage);
+        // ..
+      });
   };
   return (
     <section className="min-h-screen flex justify-center items-center">
@@ -37,6 +78,10 @@ const RegisterScreen = () => {
                   type="text"
                   className="w-full rounded-lg border-gray-200 p-4 pr-12 text-sm shadow-sm"
                   placeholder="Enter Name"
+                  id="name"
+                  value={name}
+                  required
+                  onChange={(e) => setName(e.target.value)}
                 />
               </div>
             </div>
@@ -51,6 +96,10 @@ const RegisterScreen = () => {
                   type="email"
                   className="w-full rounded-lg border-gray-200 p-4 pr-12 text-sm shadow-sm"
                   placeholder="Enter Email Address"
+                  id="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
                 />
 
                 <span className="absolute inset-y-0 right-0 grid place-content-center px-4">
@@ -80,8 +129,12 @@ const RegisterScreen = () => {
               <div className="relative">
                 <input
                   type="password"
-                  className="w-full rounded-lg border-gray-200 p-4 pr-12 text-sm shadow-sm"
                   placeholder="Enter Password"
+                  id="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                  className="w-full rounded-lg border-gray-200 p-4 pr-12 text-sm shadow-sm"
                 />
 
                 <span className="absolute inset-y-0 right-0 grid place-content-center px-4">
@@ -119,6 +172,10 @@ const RegisterScreen = () => {
                   type="password"
                   className="w-full rounded-lg border-gray-200 p-4 pr-12 text-sm shadow-sm"
                   placeholder="Confirm Password"
+                  id="confirmPassword"
+                  value={cnfPassword}
+                  onChange={(e) => setCnfPassword(e.target.value)}
+                  required
                 />
 
                 <span className="absolute inset-y-0 right-0 grid place-content-center px-4">
@@ -151,7 +208,12 @@ const RegisterScreen = () => {
             >
               Register
             </button>
-
+            <button
+              onClick={handleGoogleSignUp}
+              className="block w-full rounded-lg bg-teal-600  hover:bg-teal-700 px-5 py-3 text-sm font-medium text-white"
+            >
+              Sign Up with Google
+            </button>
             <p className="text-center text-sm text-gray-500">
               Already have and Account?{" "}
               <Link className="underline" to="/login">

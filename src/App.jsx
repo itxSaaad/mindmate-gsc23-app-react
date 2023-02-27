@@ -9,6 +9,7 @@ import HomeScreen from "./screens/HomeScreen";
 import AppointmentScreen from "./screens/AppointmentScreen";
 import LoginScreen from "./screens/LoginScreen";
 import RegisterScreen from "./screens/RegisterScreen";
+import UserProfile from "./screens/UserProfile";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       <Router>
         <NavbarCmp />
         <Routes>
+          <Route path="/profile" element={<UserProfile />} />
           <Route path="/register" element={<RegisterScreen />} />
           <Route path="/login" element={<LoginScreen />} />
           <Route path="/appointments" element={<AppointmentScreen />} />

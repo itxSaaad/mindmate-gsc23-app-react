@@ -1,13 +1,52 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import {
+  signInWithEmailAndPassword,
+  GoogleAuthProvider,
+  signInWithPopup,
+} from "firebase/auth";
+import { auth } from "../firebase";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const LoginScreen = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const handleGoogleSignIn = () => {
+    const provider = new GoogleAuthProvider();
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        navigate("/");
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        const email = error.email;
+        const credential = GoogleAuthProvider.credentialFromError(error);
+        console.log(errorCode, errorMessage, email, credential);
+      });
+  };
+
   const handleLogin = async (e) => {
     e.preventDefault();
+
+    try {
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      const user = userCredential.user;
+      navigate("/");
+      console.log(user);
+    } catch (error) {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.log(errorCode, errorMessage);
+    }
   };
   return (
     <section className="min-h-screen flex justify-center items-center">
@@ -38,6 +77,7 @@ const LoginScreen = () => {
                   onChange={(e) => {
                     setEmail(e.target.value);
                   }}
+                  required
                   className="w-full rounded-lg border-gray-200 p-4 pr-12 text-sm shadow-sm"
                 />
 
@@ -71,6 +111,7 @@ const LoginScreen = () => {
                   placeholder="Enter Password"
                   id="password"
                   value={password}
+                  required
                   onChange={(e) => setPassword(e.target.value)}
                   className="w-full rounded-lg border-gray-200 p-4 pr-12 text-sm shadow-sm"
                 />
@@ -106,7 +147,12 @@ const LoginScreen = () => {
             >
               Sign in
             </button>
-
+            <button
+              onClick={handleGoogleSignIn}
+              className="block w-full rounded-lg bg-teal-600  hover:bg-teal-700 px-5 py-3 text-sm font-medium text-white"
+            >
+              Sign in with Google
+            </button>
             <p className="text-center text-sm text-gray-500">
               No account?{" "}
               <Link className="underline" to="/register">

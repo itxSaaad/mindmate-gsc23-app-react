@@ -1,8 +1,31 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect, useRef } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { signOut } from "firebase/auth";
+import { auth } from "../firebase";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser, faBell } from "@fortawesome/free-solid-svg-icons";
 
 const NavbarCmp = () => {
+  const navigate = useNavigate();
+
   const [isOpen, setIsOpen] = useState(false);
+
+  // For the Dropdown in Nav
+  const [dropIsOpen, setDropIsOpen] = useState(false);
+
+  const dropdownRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setDropIsOpen(false);
+      }
+    };
+    window.addEventListener("click", handleClickOutside);
+    return () => {
+      window.removeEventListener("click", handleClickOutside);
+    };
+  }, [dropdownRef]);
 
   // For The Animated Scroll Up Behaviour of Navbar
   const [prevScrollPos, setPrevScrollPos] = useState(0);
@@ -15,9 +38,22 @@ const NavbarCmp = () => {
       setPrevScrollPos(currentScrollPos);
     };
     window.addEventListener("scroll", handleScroll);
+
     return () => window.removeEventListener("scroll", handleScroll);
   }, [prevScrollPos, visible, setVisible]);
 
+  const logoutHandler = () => {
+    signOut(auth)
+      .then(() => {
+        navigate("/");
+        console.log("User logged out Successfully");
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode, errorMessage);
+      });
+  };
   return (
     <nav
       className={`fixed bg-white w-screen shadow-md z-50 transition-all duration-500 ${
@@ -105,7 +141,39 @@ const NavbarCmp = () => {
               </div>
             </div>
           </div>
-          <div className="flex justify-end">
+          <div className="flex justify-end mr-5">
+            <div className="relative" ref={dropdownRef}>
+              <button
+                onClick={() => setDropIsOpen(!dropIsOpen)}
+                className="text-gray-600 block px-3 py-2 text-base hover:text-black hover:font-medium"
+              >
+                <FontAwesomeIcon icon={faUser} />
+              </button>
+              {dropIsOpen && (
+                <div className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+                  <div className="p-1">
+                    <Link
+                      to="/profile"
+                      className="text-gray-500 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base hover:font-medium"
+                    >
+                      Profile
+                    </Link>
+                    <Link
+                      to="/"
+                      className="text-gray-500 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base hover:font-medium"
+                    >
+                      Settings
+                    </Link>
+                    <Link
+                      onClick={logoutHandler}
+                      className="text-gray-500 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base hover:font-medium"
+                    >
+                      Logout
+                    </Link>
+                  </div>
+                </div>
+              )}
+            </div>
             <Link to="/login">
               <button className="bg-teal-600  hover:bg-teal-700  text-white py-2 px-4 rounded">
                 Login / Register
