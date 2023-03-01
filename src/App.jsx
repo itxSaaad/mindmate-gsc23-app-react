@@ -10,6 +10,8 @@ import AppointmentScreen from "./screens/AppointmentScreen";
 import LoginScreen from "./screens/LoginScreen";
 import RegisterScreen from "./screens/RegisterScreen";
 import UserProfile from "./screens/UserProfile";
+import ArticlesScreen from "./screens/ArticlesScreen";
+import ArticleDetailsScreen from "./screens/ArticleDetailsScreen";
 
 function App() {
   return (
@@ -17,9 +19,11 @@ function App() {
       <Router>
         <NavbarCmp />
         <Routes>
-          <Route path="/profile" element={<UserProfile />} />
           <Route path="/register" element={<RegisterScreen />} />
           <Route path="/login" element={<LoginScreen />} />
+          <Route path="/profile" element={<UserProfile />} />
+          <Route path="/articles/:id" element={<ArticleDetailsScreen />} />
+          <Route path="/articles" element={<ArticlesScreen />} />
           <Route path="/appointments" element={<AppointmentScreen />} />
           <Route path="/" exact element={<HomeScreen />} />
         </Routes>
