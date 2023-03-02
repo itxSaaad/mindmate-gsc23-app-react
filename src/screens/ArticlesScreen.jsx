@@ -4,7 +4,7 @@ import { getArticles, addArticles } from "../firebase";
 
 const ArticlesScreen = () => {
   const [articles, setArticles] = useState([]);
-  const [showForm, setShowForm] = useState(true);
+  const [showForm, setShowForm] = useState(false);
   const [newArticle, setNewArticle] = useState({
     title: "",
     image: "",
