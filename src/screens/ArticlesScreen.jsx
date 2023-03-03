@@ -29,10 +29,10 @@ const ArticlesScreen = () => {
   const handleAddArticle = async (e) => {
     e.preventDefault();
     const newArticle = {
-      title,
-      description,
-      author,
-      image,
+      title: newArticle.title,
+      description: newArticle.description,
+      author: newArticle.author,
+      image: newArticle.image,
       date: new Date(),
     };
     const article = await addArticles(newArticle);
