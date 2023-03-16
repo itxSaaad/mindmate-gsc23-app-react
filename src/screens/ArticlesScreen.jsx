@@ -5,6 +5,7 @@ import { getArticles, addArticles } from "../firebase";
 const ArticlesScreen = () => {
   const [articles, setArticles] = useState([]);
   const [showForm, setShowForm] = useState(false);
+
   const [newArticle, setNewArticle] = useState({
     title: "",
     image: "",
@@ -28,24 +29,25 @@ const ArticlesScreen = () => {
 
   const handleAddArticle = async (e) => {
     e.preventDefault();
+
+    // add new article to firebase and close the form
     const newArticle = {
       title: newArticle.title,
       description: newArticle.description,
-      author: newArticle.author,
       image: newArticle.image,
+      author: newArticle.author,
       date: new Date(),
     };
     const article = await addArticles(newArticle);
-
+    setShowForm(false);
     setArticles([...articles, article]);
     setNewArticle({
       title: "",
       image: "",
-      author: "",
       description: "",
+      author: "",
       date: "",
     });
-    setShowForm(false);
   };
 
   return (
@@ -62,7 +64,7 @@ const ArticlesScreen = () => {
         </button>
         {showForm && (
           <form
-            className=" bg-gray-100 shadow-md rounded max-w- px-8 pt-6 pb-8 mb-4"
+            className=" bg-gray-100 shadow-md rounded mt-4 px-8 pt-12 pb-8 mb-4"
             onSubmit={handleAddArticle}
           >
             <p className="text-center text-xl font-bold leading-relaxed">
@@ -159,7 +161,7 @@ const ArticlesScreen = () => {
             </div>
           </form>
         )}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mt-2 gap-4">
           {articles.map((article) => (
             <Link
               to={`/articles/${article.id}`}

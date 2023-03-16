@@ -12,6 +12,8 @@ import {
   getFirestore,
   query,
   getDocs,
+  doc,
+  getDoc,
   collection,
   where,
   addDoc,
@@ -128,20 +130,34 @@ const getArticles = async () => {
   }
 };
 
+// fetch single article
+const getArticle = async (id) => {
+  try {
+    const docRef = doc(db, "articles", id);
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+      return { id: docSnap.id, ...docSnap.data() };
+    } else {
+      console.log("No such document!");
+    }
+  } catch (err) {
+    const errorCode = err.code;
+    const errorMessage = err.message;
+    console.log(errorCode, errorMessage);
+  }
+};
+
 const addArticles = async (newArticle) => {
+  //add new document from the data filled in the form
   try {
     const docRef = await addDoc(collection(db, "articles"), newArticle);
-    console.log("Document written with ID: ", docRef.id);
-  } catch (error) {
-    console.error("Error adding document: ", error);
-  } // try {
-  //   await addDoc(collection(db, "articles"));
-  // } catch (err) {
-  //   const errorCode = err.code;
-  //   const errorMessage = err.message;
-  //   console.log(errorCode, errorMessage);
-  //   alert(err.message);
-  // }
+    return docRef.id;
+  } catch (err) {
+    const errorCode = err.code;
+    const errorMessage = err.message;
+    console.log(errorCode, errorMessage);
+  }
 };
 
 export {
@@ -153,5 +169,6 @@ export {
   sendPasswordReset,
   logout,
   getArticles,
+  getArticle,
   addArticles,
 };

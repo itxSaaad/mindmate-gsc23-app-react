@@ -1,11 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import {
-  createUserWithEmailAndPassword,
-  GoogleAuthProvider,
-  signInWithPopup,
-} from "firebase/auth";
-import { auth } from "../firebase";
+// mport { registerWithEmailAndPassword, signInWithGoogle } from "../firebase";
 
 const RegisterScreen = () => {
   const navigate = useNavigate();
@@ -16,43 +11,19 @@ const RegisterScreen = () => {
   const [cnfPassword, setCnfPassword] = useState("");
 
   const handleGoogleSignUp = () => {
-    const provider = new GoogleAuthProvider();
-    signInWithPopup(auth, provider)
-      .then((result) => {
-        const user = result.user;
-        console.log("User signed up with Google successfully:", user);
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        const email = error.email;
-        const credential = GoogleAuthProvider.credentialFromError(error);
-        console.log(errorCode, errorMessage, email, credential);
-      });
+    // signInWithGoogle();
+    navigate("/");
   };
 
   const RegisterHandler = async (e) => {
     e.preventDefault();
-    if (password !== confirmPassword) {
+    if (password !== cnfPassword) {
       alert("Passwords do not match");
       return;
     }
 
-    await createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // Signed in
-        const user = userCredential.user;
-        console.log(user);
-        navigate("/login");
-        // ...
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        alert(errorMessage);
-        console.log(errorCode, errorMessage);
-        // ..
-      });
+    //  registerWithEmailAndPassword(name, email, password);
+    navigate("/");
   };
   return (
     <section className="min-h-screen flex justify-center items-center">

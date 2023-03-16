@@ -1,53 +1,24 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import {
-  signInWithEmailAndPassword,
-  GoogleAuthProvider,
-  signInWithPopup,
-} from "firebase/auth";
-import { auth } from "../firebase";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { logInWithEmailAndPassword, signInWithGoogle } from "../firebase";
 
 const LoginScreen = () => {
   const navigate = useNavigate();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleGoogleSignIn = () => {
-    const provider = new GoogleAuthProvider();
-    signInWithPopup(auth, provider)
-      .then((result) => {
-        const user = result.user;
-        console.log(user);
-        navigate("/");
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        const email = error.email;
-        const credential = GoogleAuthProvider.credentialFromError(error);
-        console.log(errorCode, errorMessage, email, credential);
-      });
+    // signInWithGoogle();
+    navigate("/");
   };
 
   const handleLogin = async (e) => {
     e.preventDefault();
-
-    try {
-      const userCredential = await signInWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
-      const user = userCredential.user;
-      navigate("/");
-      console.log(user);
-    } catch (error) {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.log(errorCode, errorMessage);
-    }
+    //   logInWithEmailAndPassword(email, password);
+    navigate("/");
   };
+
   return (
     <section className="min-h-screen flex justify-center items-center">
       <div className="mx-auto max-w-screen-xl w-3/4 px-4 py-16 sm:px-6 lg:px-8">
