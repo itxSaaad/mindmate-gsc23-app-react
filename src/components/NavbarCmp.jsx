@@ -1,16 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useDispatch } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { logout } from "../redux/actions/userActions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 
 const NavbarCmp = () => {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-
-  const [isOpen, setIsOpen] = useState(false);
-
   // For the Dropdown in Nav
   const [dropIsOpen, setDropIsOpen] = useState(false);
 
@@ -31,6 +26,7 @@ const NavbarCmp = () => {
   // For The Animated Scroll Up Behaviour of Navbar
   const [prevScrollPos, setPrevScrollPos] = useState(0);
   const [visible, setVisible] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -43,9 +39,19 @@ const NavbarCmp = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [prevScrollPos, visible, setVisible]);
 
+  // My Functionality
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const location = useLocation();
+
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
+  const redirect = location.search ? location.search.split("=")[1] : "/";
+
   const logoutHandler = () => {
     dispatch(logout());
-    navigate("/");
+    navigate(redirect);
   };
 
   return (
@@ -136,37 +142,40 @@ const NavbarCmp = () => {
             </div>
           </div>
           <div className="flex justify-end mr-5">
-            <div className="relative" ref={dropdownRef}>
-              <button
-                onClick={() => setDropIsOpen(!dropIsOpen)}
-                className="text-gray-600 block px-3 py-2 text-base hover:text-black hover:font-medium"
-              >
-                <FontAwesomeIcon icon={faUser} />
-              </button>
-              {dropIsOpen && (
-                <div className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
-                  <div className="p-1">
-                    <Link
-                      to="/profile"
-                      className="text-gray-500 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base hover:font-medium"
-                    >
-                      Profile
-                    </Link>
-                    <Link
-                      onClick={logoutHandler}
-                      className="text-gray-500 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base hover:font-medium"
-                    >
-                      Logout
-                    </Link>
+            {userInfo ? (
+              <div className="relative" ref={dropdownRef}>
+                <button
+                  onClick={() => setDropIsOpen(!dropIsOpen)}
+                  className="text-gray-600 block px-3 py-2 text-base hover:text-black hover:font-medium"
+                >
+                  <FontAwesomeIcon icon={faUser} />
+                </button>
+                {dropIsOpen && (
+                  <div className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+                    <div className="p-1">
+                      <Link
+                        to="/profile"
+                        className="text-gray-500 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base hover:font-medium"
+                      >
+                        Profile
+                      </Link>
+                      <Link
+                        onClick={logoutHandler}
+                        className="text-gray-500 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base hover:font-medium"
+                      >
+                        Logout
+                      </Link>
+                    </div>
                   </div>
-                </div>
-              )}
-            </div>
-            <Link to="/login">
-              <button className="bg-teal-600  hover:bg-teal-700  text-white py-2 px-4 rounded">
-                Login / Register
-              </button>
-            </Link>
+                )}
+              </div>
+            ) : (
+              <Link to="/login">
+                <button className="bg-teal-600  hover:bg-teal-700  text-white py-2 px-4 rounded">
+                  Login / Register
+                </button>
+              </Link>
+            )}
           </div>
         </div>
       </div>

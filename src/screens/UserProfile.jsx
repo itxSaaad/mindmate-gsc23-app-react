@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+
 import {
   getUserDetails,
   updateUserProfile,
 } from "../redux/actions/userActions";
+
+import Message from "../components/Message";
+import Loader from "../components/Loader";
 
 const UserProfile = () => {
   const navigate = useNavigate();
@@ -52,19 +56,18 @@ const UserProfile = () => {
 
   return (
     <section className="min-h-screen flex justify-center items-center">
-      <div className="py-auto px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-12">
-        <h1 className="text-6xl font-bold tracking-tight sm:text-6xl mb-4 text-black">
+      {loading && <Loader>Loading...</Loader>}
+      <div className="mx-auto max-w-screen-xl w-3/4 px-4 py-20 sm:px-6 lg:px-8">
+        <h1 className="text-6xl text-center font-bold tracking-tight sm:text-6xl mb-4 text-black">
           User Profile
         </h1>
-        {loading && <div className="text-center">Loading...</div>}
-        {message && <div className="text-center text-red-500">{message}</div>}
+
+        {message && <Message type="error">{message}</Message>}
         {success && (
-          <div className="text-center text-green-500">
-            Profile Updated Successfully
-          </div>
+          <Message type="Success">Profile Updated Successfully</Message>
         )}
         {error && <div className="text-center text-red-500">{error}</div>}
-        <div className="min-w-75 mx-auto max-w-lg">
+        <div className="mx-auto max-w-lg my-2">
           {isEditing ? (
             <form
               className="mt-6 mb-0 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8"
@@ -228,7 +231,7 @@ const UserProfile = () => {
               </div>
             </form>
           ) : (
-            <div className="mt-6 mb-2 space-y-4 rounded-lg p-4 flex flex-col items-center shadow-lg sm:p-6 lg:p-8 ">
+            <div className="mt-6 mb-0 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8">
               <div className="flex flex-col">
                 <label htmlFor="displayName" className="text-slate-400">
                   Name:

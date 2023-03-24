@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import Loader from "../components/Loader";
 import { getArticles, addArticles } from "../firebase";
 
 const ArticlesScreen = () => {
@@ -29,29 +30,11 @@ const ArticlesScreen = () => {
 
   const handleAddArticle = async (e) => {
     e.preventDefault();
-
-    // add new article to firebase and close the form
-    const newArticle = {
-      title: newArticle.title,
-      description: newArticle.description,
-      image: newArticle.image,
-      author: newArticle.author,
-      date: new Date(),
-    };
-    const article = await addArticles(newArticle);
-    setShowForm(false);
-    setArticles([...articles, article]);
-    setNewArticle({
-      title: "",
-      image: "",
-      description: "",
-      author: "",
-      date: "",
-    });
   };
 
   return (
     <section className="min-h-screen h-auto flex justify-center items-center">
+      {loading && <Loader />}
       <div className=" container py-auto px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-12">
         <h2 className="text-center py-7 text-4xl font-bold tracking-tight sm:text-5xl">
           Read New Articles!

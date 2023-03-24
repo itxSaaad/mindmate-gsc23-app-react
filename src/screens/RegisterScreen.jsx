@@ -7,6 +7,9 @@ import {
   loginWithGoogle,
 } from "../redux/actions/userActions";
 
+import Message from "../components/Message";
+import Loader from "../components/Loader";
+
 const RegisterScreen = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -38,18 +41,21 @@ const RegisterScreen = () => {
     if (password !== cnfPassword) {
       setMessage("Passwords do not match");
     }
+
     dispatch(registerWithEmailAndPassword(name, email, password));
   };
   return (
     <section className="min-h-screen flex justify-center items-center">
-      <div className="mx-auto max-w-screen-xl w-3/4 px-4 py-16 sm:px-6 lg:px-8">
-        <h1 className="text-center text-3xl font-bold tracking-tight text-teal-600 sm:text-4xl">
+      {loading && <Loader />}
+      <div className="mx-auto max-w-screen-xl w-3/4 px-4 py-20 sm:px-6 lg:px-8">
+        <h1 className="text-center text-3xl mb-2 font-bold tracking-tight text-teal-600 sm:text-4xl">
           Welcome to MindMate!
         </h1>
-        {loading && <div className="text-center">Loading...</div>}
-        {error && <div className="text-center text-red-500">{error}</div>}
-        {message && <div className="text-center text-red-500">{message}</div>}
-        <div className="mx-auto max-w-lg ">
+
+        {error && <Message type="error">{error}</Message>}
+
+        <div className="mx-auto max-w-lg my-2">
+          {message && <Message type="error">{message}</Message>}
           <form
             onSubmit={RegisterHandler}
             className="mt-6 mb-0 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8"
