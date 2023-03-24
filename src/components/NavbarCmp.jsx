@@ -1,12 +1,13 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { signOut } from "firebase/auth";
-import { auth } from "../firebase";
+import { logout } from "../redux/actions/userActions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser, faBell } from "@fortawesome/free-solid-svg-icons";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
 
 const NavbarCmp = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -43,17 +44,10 @@ const NavbarCmp = () => {
   }, [prevScrollPos, visible, setVisible]);
 
   const logoutHandler = () => {
-    signOut(auth)
-      .then(() => {
-        navigate("/");
-        console.log("User logged out Successfully");
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorCode, errorMessage);
-      });
+    dispatch(logout());
+    navigate("/");
   };
+
   return (
     <nav
       className={`fixed bg-white w-screen shadow-md z-50 transition-all duration-500 ${
@@ -112,7 +106,7 @@ const NavbarCmp = () => {
             <div className="flex-shrink-0 flex items-center">
               <Link
                 to="/"
-                className="text-2xl font-semibold hover:text-slate-600"
+                className="text-2xl font-semibold hover:text-slate-600 ml-8 sm:ml-0"
               >
                 MindMate
               </Link>
@@ -157,12 +151,6 @@ const NavbarCmp = () => {
                       className="text-gray-500 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base hover:font-medium"
                     >
                       Profile
-                    </Link>
-                    <Link
-                      to="/"
-                      className="text-gray-500 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base hover:font-medium"
-                    >
-                      Settings
                     </Link>
                     <Link
                       onClick={logoutHandler}

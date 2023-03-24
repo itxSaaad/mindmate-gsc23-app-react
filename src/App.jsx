@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.css";
 
+import { Provider } from "react-redux";
+import store from "./store";
+
 import NavbarCmp from "./components/NavbarCmp";
 import Footer from "./components/Footer";
 
@@ -15,7 +18,7 @@ import ArticleDetailsScreen from "./screens/ArticleDetailsScreen";
 
 function App() {
   return (
-    <>
+    <Provider store={store}>
       <Router>
         <NavbarCmp />
         <Routes>
@@ -29,7 +32,7 @@ function App() {
         </Routes>
       </Router>
       <Footer />
-    </>
+    </Provider>
   );
 }
 

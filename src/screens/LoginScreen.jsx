@@ -1,22 +1,37 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-// import { logInWithEmailAndPassword, signInWithGoogle } from "../firebase";
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  loginWithEmailAndPassword,
+  loginWithGoogle,
+} from "../redux/actions/userActions";
 
 const LoginScreen = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const location = useLocation();
+
+  const userLogin = useSelector((state) => state.userLogin);
+  const { loading, error, userInfo } = userLogin;
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const redirect = location.search ? location.search.split("=")[1] : "/";
+
+  useEffect(() => {
+    if (userInfo) {
+      navigate(redirect);
+    }
+  }, [userInfo, navigate, redirect]);
+
   const handleGoogleSignIn = () => {
-    // signInWithGoogle();
-    navigate("/");
+    dispatch(loginWithGoogle());
   };
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    //   logInWithEmailAndPassword(email, password);
-    navigate("/");
+    dispatch(loginWithEmailAndPassword(email, password));
   };
 
   return (
@@ -25,6 +40,8 @@ const LoginScreen = () => {
         <h1 className="text-center text-3xl font-bold tracking-tight text-teal-600 sm:text-4xl">
           Welcome to MindMate!
         </h1>
+        {loading && <div className="text-center">Loading...</div>}
+        {error && <div className="text-center text-red-500">{error}</div>}
         <div className="mx-auto max-w-lg">
           <form
             className="mt-6 mb-0 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8"
@@ -75,7 +92,6 @@ const LoginScreen = () => {
               <label htmlFor="password" className="sr-only">
                 Password
               </label>
-
               <div className="relative">
                 <input
                   type="password"
@@ -109,6 +125,14 @@ const LoginScreen = () => {
                     />
                   </svg>
                 </span>
+              </div>
+              <div className="text-right">
+                <Link
+                  to="/forgot-password"
+                  className="text-sm text-teal-600 hover:text-teal-900 hover:underline"
+                >
+                  Forgot Password?
+                </Link>
               </div>
             </div>
 

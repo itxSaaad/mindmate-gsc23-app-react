@@ -1,29 +1,44 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-// mport { registerWithEmailAndPassword, signInWithGoogle } from "../firebase";
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+
+import {
+  registerWithEmailAndPassword,
+  loginWithGoogle,
+} from "../redux/actions/userActions";
 
 const RegisterScreen = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const location = useLocation();
+
+  const userRegister = useSelector((state) => state.userRegister);
+  const { loading, error, userInfo } = userRegister;
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [cnfPassword, setCnfPassword] = useState("");
+  const [message, setMessage] = useState(null);
+
+  const redirect = location.search ? location.search.split("=")[1] : "/";
+
+  useEffect(() => {
+    if (userInfo) {
+      navigate(redirect);
+    }
+  }, [userInfo, navigate, redirect]);
 
   const handleGoogleSignUp = () => {
-    // signInWithGoogle();
-    navigate("/");
+    dispatch(loginWithGoogle());
   };
 
   const RegisterHandler = async (e) => {
     e.preventDefault();
     if (password !== cnfPassword) {
-      alert("Passwords do not match");
-      return;
+      setMessage("Passwords do not match");
     }
-
-    //  registerWithEmailAndPassword(name, email, password);
-    navigate("/");
+    dispatch(registerWithEmailAndPassword(name, email, password));
   };
   return (
     <section className="min-h-screen flex justify-center items-center">
@@ -31,6 +46,9 @@ const RegisterScreen = () => {
         <h1 className="text-center text-3xl font-bold tracking-tight text-teal-600 sm:text-4xl">
           Welcome to MindMate!
         </h1>
+        {loading && <div className="text-center">Loading...</div>}
+        {error && <div className="text-center text-red-500">{error}</div>}
+        {message && <div className="text-center text-red-500">{message}</div>}
         <div className="mx-auto max-w-lg ">
           <form
             onSubmit={RegisterHandler}
