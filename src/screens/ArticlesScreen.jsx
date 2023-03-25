@@ -1,11 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+
+import { listArticles } from "../redux/actions/articleActions";
+
 import Loader from "../components/Loader";
-import { getArticles, addArticles } from "../firebase";
+import Message from "../components/Message";
 
 const ArticlesScreen = () => {
-  const [articles, setArticles] = useState([]);
+  const dispatch = useDispatch();
+
   const [showForm, setShowForm] = useState(false);
+
+  const { loading, error, articles } = useSelector(
+    (state) => state.articlesList
+  );
 
   const [newArticle, setNewArticle] = useState({
     title: "",
@@ -16,12 +25,8 @@ const ArticlesScreen = () => {
   });
 
   useEffect(() => {
-    const fetchArticles = async () => {
-      const articles = await getArticles();
-      setArticles(articles);
-    };
-    fetchArticles();
-  }, []);
+    dispatch(listArticles());
+  }, [dispatch]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -39,6 +44,7 @@ const ArticlesScreen = () => {
         <h2 className="text-center py-7 text-4xl font-bold tracking-tight sm:text-5xl">
           Read New Articles!
         </h2>
+        {error && <Message type="error">{error}</Message>}
         <button
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
           onClick={() => setShowForm(true)}

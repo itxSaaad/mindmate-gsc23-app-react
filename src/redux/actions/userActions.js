@@ -94,7 +94,6 @@ export const logout = () => async (dispatch) => {
     await signOut(auth);
 
     dispatch({ type: USER_LOGOUT });
-    dispatch({ type: USER_DETAILS_RESET });
 
     localStorage.removeItem("userInfo");
   } catch (error) {

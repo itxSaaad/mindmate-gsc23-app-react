@@ -56,7 +56,7 @@ const UserProfile = () => {
 
   return (
     <section className="min-h-screen flex justify-center items-center">
-      {loading && <Loader>Loading...</Loader>}
+      {loading && <Loader />}
       <div className="mx-auto max-w-screen-xl w-3/4 px-4 py-20 sm:px-6 lg:px-8">
         <h1 className="text-6xl text-center font-bold tracking-tight sm:text-6xl mb-4 text-black">
           User Profile

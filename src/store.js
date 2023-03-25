@@ -14,19 +14,30 @@ import {
   userPwdResetReducer,
 } from "./redux/reducers/userReducers.js";
 
+import {
+  articlesListReducer,
+  articleDetailsReducer,
+  articleCreateReducer,
+} from "./redux/reducers/articleReducer.js";
+
 const reducer = combineReducers({
   userLogin: userLoginReducer,
   userRegister: userRegisterReducer,
   userDetails: userDetailsReducer,
   userUpdateProfile: userUpdateProfileReducer,
   userPwdReset: userPwdResetReducer,
+  articlesList: articlesListReducer,
+  articleDetails: articleDetailsReducer,
+  articleCreate: articleCreateReducer,
 });
 
 const userInfoFromStorage = localStorage.getItem("userInfo")
   ? JSON.parse(localStorage.getItem("userInfo"))
   : null;
 
-const initialState = { userLogin: { userInfo: userInfoFromStorage } };
+const initialState = {
+  userLogin: { userInfo: userInfoFromStorage },
+};
 
 const middleware = [thunk];
 
