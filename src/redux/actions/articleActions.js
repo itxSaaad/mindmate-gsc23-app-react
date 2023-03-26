@@ -46,9 +46,11 @@ export const listArticleDetails = (id) => async (dispatch) => {
     const article = await getDoc(articleRef);
 
     if (article.exists()) {
+      const data = { id: article.id, ...article.data() };
+
       dispatch({
         type: ARTICLE_DETAILS_SUCCESS,
-        payload: { id: article.id, ...article.data() },
+        payload: data,
       });
     } else {
       dispatch({
