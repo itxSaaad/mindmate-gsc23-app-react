@@ -32,10 +32,7 @@ export const articlesListReducer = (state = { articles: [] }, action) => {
   }
 };
 
-export const articleDetailsReducer = (
-  state = { article: { reviews: [] } },
-  action
-) => {
+export const articleDetailsReducer = (state = { article: null }, action) => {
   switch (action.type) {
     case ARTICLE_DETAILS_REQUEST:
       return { ...state, loading: true };
@@ -48,12 +45,12 @@ export const articleDetailsReducer = (
   }
 };
 
-export const articleCreateReducer = (state = {}, action) => {
+export const articleCreateReducer = (state = { article: null }, action) => {
   switch (action.type) {
     case ARTICLE_CREATE_REQUEST:
-      return { loading: true };
+      return { ...state, loading: true };
     case ARTICLE_CREATE_SUCCESS:
-      return { loading: false, success: true, article: action.payload };
+      return { loading: false, article: action.payload };
     case ARTICLE_CREATE_FAIL:
       return { loading: false, error: action.payload };
     default:

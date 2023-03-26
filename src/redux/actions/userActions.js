@@ -1,36 +1,35 @@
 import {
-  USER_LOGIN_REQUEST,
-  USER_LOGIN_SUCCESS,
-  USER_LOGIN_FAIL,
-  USER_LOGOUT,
-  USER_REGISTER_REQUEST,
-  USER_REGISTER_SUCCESS,
-  USER_REGISTER_FAIL,
+  USER_DETAILS_FAIL,
   USER_DETAILS_REQUEST,
   USER_DETAILS_SUCCESS,
-  USER_DETAILS_FAIL,
-  USER_UPDATE_PROFILE_REQUEST,
-  USER_UPDATE_PROFILE_SUCCESS,
-  USER_UPDATE_PROFILE_FAIL,
+  USER_LOGIN_FAIL,
+  USER_LOGIN_REQUEST,
+  USER_LOGIN_SUCCESS,
+  USER_LOGOUT,
+  USER_PWD_RESET_FAIL,
   USER_PWD_RESET_REQUEST,
   USER_PWD_RESET_SUCCESS,
-  USER_PWD_RESET_FAIL,
-  USER_DETAILS_RESET,
+  USER_REGISTER_FAIL,
+  USER_REGISTER_REQUEST,
+  USER_REGISTER_SUCCESS,
+  USER_UPDATE_PROFILE_FAIL,
+  USER_UPDATE_PROFILE_REQUEST,
+  USER_UPDATE_PROFILE_SUCCESS,
 } from "../constants/userConstants.js";
 
 import {
+  createUserWithEmailAndPassword,
+  getAuth,
   GoogleAuthProvider,
   onAuthStateChanged,
-  getAuth,
-  signInWithPopup,
-  signInWithEmailAndPassword,
-  createUserWithEmailAndPassword,
-  updateProfile,
   sendPasswordResetEmail,
+  signInWithEmailAndPassword,
+  signInWithPopup,
   signOut,
+  updateProfile,
 } from "firebase/auth";
 
-import { collection, addDoc } from "firebase/firestore";
+import { addDoc, collection } from "firebase/firestore";
 
 import { app, db } from "../../firebase.js";
 

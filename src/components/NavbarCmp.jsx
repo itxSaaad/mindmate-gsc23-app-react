@@ -148,7 +148,7 @@ const NavbarCmp = () => {
                   onClick={() => setDropIsOpen(!dropIsOpen)}
                   className="text-gray-600 block px-3 py-2 text-base hover:text-black hover:font-medium"
                 >
-                  <FontAwesomeIcon icon={faUser} />
+                  <FontAwesomeIcon icon={faUser} /> {userInfo.displayName}
                 </button>
                 {dropIsOpen && (
                   <div className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">

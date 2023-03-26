@@ -1,23 +1,23 @@
+import { composeWithDevTools } from "@redux-devtools/extension";
 import {
-  legacy_createStore as createStore,
-  combineReducers,
   applyMiddleware,
+  combineReducers,
+  legacy_createStore as createStore,
 } from "redux";
 import thunk from "redux-thunk";
-import { composeWithDevTools } from "@redux-devtools/extension";
 
 import {
-  userLoginReducer,
-  userRegisterReducer,
   userDetailsReducer,
-  userUpdateProfileReducer,
+  userLoginReducer,
   userPwdResetReducer,
+  userRegisterReducer,
+  userUpdateProfileReducer,
 } from "./redux/reducers/userReducers.js";
 
 import {
-  articlesListReducer,
-  articleDetailsReducer,
   articleCreateReducer,
+  articleDetailsReducer,
+  articlesListReducer,
 } from "./redux/reducers/articleReducer.js";
 
 const reducer = combineReducers({

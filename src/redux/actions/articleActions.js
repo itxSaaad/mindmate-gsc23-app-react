@@ -1,34 +1,27 @@
 import {
-  ARTICLE_LIST_REQUEST,
-  ARTICLE_LIST_SUCCESS,
-  ARTICLE_LIST_FAIL,
-  ARTICLE_DETAILS_REQUEST,
-  ARTICLE_DETAILS_SUCCESS,
-  ARTICLE_DETAILS_FAIL,
-  ARTICLE_DELETE_REQUEST,
-  ARTICLE_DELETE_SUCCESS,
-  ARTICLE_DELETE_FAIL,
+  ARTICLE_CREATE_FAIL,
   ARTICLE_CREATE_REQUEST,
   ARTICLE_CREATE_SUCCESS,
-  ARTICLE_CREATE_FAIL,
-  ARTICLE_UPDATE_REQUEST,
-  ARTICLE_UPDATE_SUCCESS,
-  ARTICLE_UPDATE_FAIL,
+  ARTICLE_DETAILS_FAIL,
+  ARTICLE_DETAILS_REQUEST,
+  ARTICLE_DETAILS_SUCCESS,
+  ARTICLE_LIST_FAIL,
+  ARTICLE_LIST_REQUEST,
+  ARTICLE_LIST_SUCCESS,
 } from "../constants/articleConstants.js";
 
-import { collection, getDocs } from "firebase/firestore";
+import { doc, collection, getDoc, addDoc, getDocs } from "firebase/firestore";
 import { db } from "../../firebase.js";
 
 export const listArticles = () => async (dispatch) => {
   try {
     dispatch({ type: ARTICLE_LIST_REQUEST });
-    const articles = [];
 
     const querySnapshot = await getDocs(collection(db, "articles"));
-
-    querySnapshot.forEach((doc) => {
-      articles.push({ id: doc.id, ...doc.data() });
-    });
+    const articles = querySnapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
 
     dispatch({
       type: ARTICLE_LIST_SUCCESS,
@@ -48,12 +41,21 @@ export const listArticles = () => async (dispatch) => {
 export const listArticleDetails = (id) => async (dispatch) => {
   try {
     dispatch({ type: ARTICLE_DETAILS_REQUEST });
-    const article = await getDocs(collection(db, "articles"));
 
-    dispatch({
-      type: ARTICLE_DETAILS_SUCCESS,
-      payload: article,
-    });
+    const articleRef = doc(db, "articles", id);
+    const article = await getDoc(articleRef);
+
+    if (article.exists()) {
+      dispatch({
+        type: ARTICLE_DETAILS_SUCCESS,
+        payload: { id: article.id, ...article.data() },
+      });
+    } else {
+      dispatch({
+        type: ARTICLE_DETAILS_FAIL,
+        payload: "Article not found",
+      });
+    }
   } catch (error) {
     dispatch({
       type: ARTICLE_DETAILS_FAIL,
@@ -68,11 +70,12 @@ export const listArticleDetails = (id) => async (dispatch) => {
 export const createArticle = (article) => async (dispatch) => {
   try {
     dispatch({ type: ARTICLE_CREATE_REQUEST });
-    const article = await getDocs(collection(db, "articles"));
+
+    const docRef = await addDoc(collection(db, "articles"), article);
 
     dispatch({
       type: ARTICLE_CREATE_SUCCESS,
-      payload: article,
+      payload: { id: docRef.id, ...article },
     });
   } catch (error) {
     dispatch({
