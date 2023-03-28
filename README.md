@@ -11,7 +11,7 @@
     <strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/itxSaaad/MindMate-GSC23">View Demo</a>
+    <a href="https://mind-mate-gsc-23.vercel.app/">View Demo</a>
     ·
     <a href="https://github.com/itxSaaad/MindMate-GSC23/issues">Report Bug</a>
     ·
