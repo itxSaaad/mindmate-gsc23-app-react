@@ -138,6 +138,12 @@ const NavbarCmp = () => {
                 >
                   Articles
                 </Link>
+                <Link
+                  to="/selfCounsel"
+                  className="text-gray-600 block px-3 py-2 text-base hover:text-black hover:font-medium"
+                >
+                  Self-Counseling
+                </Link>
               </div>
             </div>
           </div>
@@ -200,6 +206,12 @@ const NavbarCmp = () => {
             className="text-gray-500 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
           >
             Articles
+          </Link>
+          <Link
+            to="/selfCounsel"
+            className="text-gray-500 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+          >
+            Self-Counseling
           </Link>
         </div>
       </div>

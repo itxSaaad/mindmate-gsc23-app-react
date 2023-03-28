@@ -10,6 +10,7 @@ import NavbarCmp from "./components/NavbarCmp";
 import AppointmentScreen from "./screens/AppointmentScreen";
 import ArticleDetailsScreen from "./screens/ArticleDetailsScreen";
 import ArticlesScreen from "./screens/ArticlesScreen";
+import CounselingScreen from "./screens/CounselingScreen";
 import HomeScreen from "./screens/HomeScreen";
 import LoginScreen from "./screens/LoginScreen";
 import RegisterScreen from "./screens/RegisterScreen";
@@ -24,6 +25,7 @@ function App() {
           <Route path="/register" element={<RegisterScreen />} />
           <Route path="/login" element={<LoginScreen />} />
           <Route path="/profile" element={<UserProfile />} />
+          <Route path="/selfCounsel" element={<CounselingScreen />} />
           <Route path="/articles/:id" element={<ArticleDetailsScreen />} />
           <Route path="/articles" element={<ArticlesScreen />} />
           <Route path="/appointments" element={<AppointmentScreen />} />
