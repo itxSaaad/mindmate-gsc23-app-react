@@ -28,24 +28,27 @@
 
 ## Live Preview Project
 
-[Live Preview]
+[Live Preview](https://mind-mate-gsc-23.vercel.app/)
 
 ## Features
 
-- User Authentication
-- User Profile
-- User Appointments
-- User Chat
-- User Articles
-- User Feedback
+- Home Screen: Landing page with an overview of the app's features and navigation options.
+- Appointment Screen: Allows users to schedule appointments with mental health professionals or therapists using Chatbot.
+- Articles Screen: Provides access to mental health-related articles, blogs, and news.
+- Login/Register Screen: Allows users to sign in or register with their email and password or social media accounts.
+- User Profile Screen: Displays user information and allows them to edit their profiles, change their passwords, or delete their accounts.
+- Navbar and Footer Component: Navigation components that appear on all screens and allow users to access help or log out of their accounts.
 
 ## Tech Stack
 
 MindMate uses a number of open source projects to work properly:
 
 - [React.Js] - HTML enhanced for web apps!
-- [Firebase] - Realtime Database
-- [Material-UI] - Great UI boilerplate for modern web apps
+- [React Router] - A library for managing routing in React applications.
+- [Redux.Js] - A predictable state container for JavaScript apps.
+- [Firebase] - A mobile and web application development platform that provides authentication, database, and hosting services.
+- [Dialogflow] - A natural language processing platform for building chatbots.
+- [TailwindCSS] - A utility-first CSS framework for designing responsive and customizable UI components.
 - [Vite.js] - BoilerPlate for React Application
 
 ## Getting Started
@@ -94,6 +97,10 @@ Don't forget to give the project a star! Thanks again!
 - Seher Kanwal - seherkanwal156@gmail.com
 
 Project Link: [hhttps://github.com/itxSaaad/MindMate-GSC23](https://github.com/itxSaaad/MindMate-GSC23)
+
+## License
+
+MindMate is licensed under the [MIT License](./LICENSE)
 
 ## Support
 
