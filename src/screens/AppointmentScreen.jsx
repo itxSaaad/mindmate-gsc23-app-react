@@ -11,7 +11,7 @@ const AppointmentScreen = () => {
           <iframe
             className="w-full h-96 border-0 rounded-lg shadow-lg overflow-hidden"
             allow="microphone;"
-            src="https://console.dialogflow.com/api-client/demo/embedded/106b9861-bdd1-4ea3-8880-bea69c825415"
+            src="https://console.dialogflow.com/api-client/demo/embedded/643120d9-0555-4243-a54d-af92bf083f06"
           ></iframe>
         </div>
       </div>
