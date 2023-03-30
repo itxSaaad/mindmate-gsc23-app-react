@@ -20,6 +20,8 @@ import {
   articlesListReducer,
 } from "./redux/reducers/articleReducer.js";
 
+import { exercisesListReducer } from "./redux/reducers/exerciseReducer.js";
+
 const reducer = combineReducers({
   userLogin: userLoginReducer,
   userRegister: userRegisterReducer,
@@ -29,6 +31,7 @@ const reducer = combineReducers({
   articlesList: articlesListReducer,
   articleDetails: articleDetailsReducer,
   articleCreate: articleCreateReducer,
+  exercisesList: exercisesListReducer,
 });
 
 const userInfoFromStorage = localStorage.getItem("userInfo")
