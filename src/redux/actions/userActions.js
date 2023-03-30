@@ -1,6 +1,7 @@
 import {
   USER_DETAILS_FAIL,
   USER_DETAILS_REQUEST,
+  USER_DETAILS_RESET,
   USER_DETAILS_SUCCESS,
   USER_LOGIN_FAIL,
   USER_LOGIN_REQUEST,
@@ -92,9 +93,10 @@ export const logout = () => async (dispatch) => {
     const auth = getAuth(app);
     await signOut(auth);
 
-    dispatch({ type: USER_LOGOUT });
-
     localStorage.removeItem("userInfo");
+
+    dispatch({ type: USER_LOGOUT });
+    dispatch({ type: USER_DETAILS_RESET });
   } catch (error) {
     dispatch({
       type: USER_LOGIN_FAIL,
