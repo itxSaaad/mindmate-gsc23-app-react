@@ -32,7 +32,7 @@ const HeroHome = () => {
           <Link to="/appointments">
             <button
               type="button"
-              className="rounded-lg border border-white bg-white px-5 py-2.5 text-center text-sm font-medium text-gray-500 shadow-none transition-all hover:bg-gray-100 hover:text-gray-500"
+              className="rounded-lg border border-white bg-white px-5 py-2.5 text-center text-sm font-bold text-gray-500 shadow-none transition-all hover:bg-gray-100 hover:text-gray-500"
             >
               Get in Touch
             </button>
@@ -40,7 +40,7 @@ const HeroHome = () => {
           <Link to="/articles">
             <button
               type="button"
-              className="rounded-lg border border-white bg-transparent px-5 py-2.5 text-center text-sm font-medium text-white shadow-none transition-all hover:bg-gray-100 hover:text-gray-500"
+              className="rounded-lg border border-white bg-transparent px-5 py-2.5 text-center text-sm font-bold text-white shadow-none transition-all hover:bg-gray-100 hover:text-gray-500"
             >
               Read Articles
             </button>

@@ -70,9 +70,7 @@ const FAQSection = () => {
                   onClick={() => handleQuestionClick(q.id)}
                   className="text-left w-full flex justify-between items-start text-gray-400"
                 >
-                  <span className="font-medium text-gray-900">
-                    {q.question}
-                  </span>
+                  <span className="font-bold text-gray-900">{q.question}</span>
                   <span className="relative ml-1.5 h-5 w-5 flex-shrink-0">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"

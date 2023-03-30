@@ -32,7 +32,7 @@ const ArticleDetailsScreen = () => {
         {loading ? (
           <Loader />
         ) : article ? (
-          <div className="bg-white opacity-90 container pt-18 px-4 mx-4 max-w-screen-xl text-center lg:py-16 lg:px-12 border rounded-md">
+          <div className="bg-white opacity-90 container px-16 my-28 mx-4 max-w-screen-xl text-center lg:py-18 lg:px-22 border rounded-md">
             {error && <Message type="error">{error}</Message>}
             <h2 className="text-center py-7 text-4xl font-bold tracking-tight sm:text-5xl">
               {article.title}

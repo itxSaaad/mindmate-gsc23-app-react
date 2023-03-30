@@ -112,7 +112,7 @@ const NavbarCmp = () => {
             <div className="flex-shrink-0 flex items-center">
               <Link
                 to="/"
-                className="text-2xl font-semibold hover:text-slate-600 ml-8 sm:ml-0"
+                className="text-2xl font-bold hover:text-slate-600 ml-8 sm:ml-0"
               >
                 MindMate
               </Link>
@@ -122,25 +122,25 @@ const NavbarCmp = () => {
                 {/* Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" */}
                 <Link
                   to="/"
-                  className="text-gray-600 block px-3 py-2 text-base hover:text-black hover:font-medium"
+                  className="text-gray-600 block px-3 py-2 text-base hover:text-black hover:font-bold"
                 >
                   Home
                 </Link>
                 <Link
                   to="/appointments"
-                  className="text-gray-600 block px-3 py-2 text-base hover:text-black hover:font-medium"
+                  className="text-gray-600 block px-3 py-2 text-base hover:text-black hover:font-bold"
                 >
                   Appointment
                 </Link>
                 <Link
                   to="/articles"
-                  className="text-gray-600 block px-3 py-2 text-base hover:text-black hover:font-medium"
+                  className="text-gray-600 block px-3 py-2 text-base hover:text-black hover:font-bold"
                 >
                   Articles
                 </Link>
                 <Link
                   to="/selfCounsel"
-                  className="text-gray-600 block px-3 py-2 text-base hover:text-black hover:font-medium"
+                  className="text-gray-600 block px-3 py-2 text-base hover:text-black hover:font-bold"
                 >
                   Self-Counseling
                 </Link>
@@ -152,7 +152,7 @@ const NavbarCmp = () => {
               <div className="relative" ref={dropdownRef}>
                 <button
                   onClick={() => setDropIsOpen(!dropIsOpen)}
-                  className="text-gray-600 block px-3 py-2 text-base hover:text-black hover:font-medium"
+                  className="text-gray-600 block px-3 py-2 text-base hover:text-black hover:font-bold"
                 >
                   <FontAwesomeIcon icon={faUser} /> {userInfo.displayName}
                 </button>
@@ -161,13 +161,13 @@ const NavbarCmp = () => {
                     <div className="p-1">
                       <Link
                         to="/profile"
-                        className="text-gray-500 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base hover:font-medium"
+                        className="text-gray-500 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base hover:font-bold"
                       >
                         Profile
                       </Link>
                       <Link
                         onClick={logoutHandler}
-                        className="text-gray-500 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base hover:font-medium"
+                        className="text-gray-500 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base hover:font-bold"
                       >
                         Logout
                       </Link>
@@ -191,25 +191,25 @@ const NavbarCmp = () => {
           {/* Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" */}
           <Link
             to="/"
-            className="text-gray-500 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+            className="text-gray-500 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-bold"
           >
             Home
           </Link>
           <Link
             to="/appointments"
-            className="text-gray-500 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+            className="text-gray-500 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-bold"
           >
             Appointment
           </Link>
           <Link
             to="/articles"
-            className="text-gray-500 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+            className="text-gray-500 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-bold"
           >
             Articles
           </Link>
           <Link
             to="/selfCounsel"
-            className="text-gray-500 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+            className="text-gray-500 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-bold"
           >
             Self-Counseling
           </Link>

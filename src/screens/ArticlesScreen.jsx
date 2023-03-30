@@ -37,7 +37,7 @@ const ArticlesScreen = () => {
         ) : error ? (
           <Message type="error">{error}</Message>
         ) : (
-          <div className=" container py-auto px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-12">
+          <div className=" container py-auto px-4 my-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-12">
             <h2 className="text-center pt-20 py-7 text-4xl font-bold tracking-tight  sm:text-5xl">
               Read New Articles!
             </h2>
