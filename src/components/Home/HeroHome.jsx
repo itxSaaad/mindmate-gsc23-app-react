@@ -1,18 +1,20 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
+
+import img from '/img/kelly-sikkema-XX2WTbLr3r8-unsplash.jpg';
 
 const HeroHome = () => {
   return (
     <section
       className="min-h-screen flex justify-center items-center"
       style={{
-        backgroundImage: "url('/img/kelly-sikkema-XX2WTbLr3r8-unsplash.jpg')",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-        backgroundColor: "#444",
-        backgroundBlendMode: "overlay",
-        backgroundOpacity: "0.9",
+        backgroundImage: `url(${img})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        backgroundColor: '#444',
+        backgroundBlendMode: 'overlay',
+        backgroundOpacity: '0.9',
       }}
     >
       <div className="py-auto px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-12">

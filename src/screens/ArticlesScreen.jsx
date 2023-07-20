@@ -1,13 +1,14 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import React, { Suspense, useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
-import { listArticles } from "../redux/actions/articleActions";
+import { listArticles } from '../redux/actions/articleActions';
 
-import AddArticleForm from "../components/AddArticleForm";
-import Loader from "../components/Loader";
-import Message from "../components/Message";
-import Meta from "../components/Meta";
+import Loader from '../components/Loader';
+import Message from '../components/Message';
+import Meta from '../components/Meta';
+
+const AddArticleForm = React.lazy(() => import('../components/AddArticleForm'));
 
 const ArticlesScreen = () => {
   const dispatch = useDispatch();
@@ -29,7 +30,7 @@ const ArticlesScreen = () => {
   }, [dispatch]);
 
   return (
-    <>
+    <Suspense fallback={<Loader />}>
       <Meta title="Read Articles - MindMate" />
       <section className="min-h-screen h-auto flex justify-center items-center">
         {loading ? (
@@ -69,7 +70,7 @@ const ArticlesScreen = () => {
                       {article.title}
                     </h2>
                     <p className="text-gray-700 text-sm mb-2">
-                      By {article.author} on{" "}
+                      By {article.author} on{' '}
                       {article.date?.toDate()?.toString().substr(0, 15)}
                     </p>
                     <p className="text-gray-600">
@@ -82,7 +83,7 @@ const ArticlesScreen = () => {
           </div>
         )}
       </section>
-    </>
+    </Suspense>
   );
 };
 

@@ -1,12 +1,12 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
-import Loader from "../components/Loader";
-import Message from "../components/Message";
-import Meta from "../components/Meta";
+import Loader from '../components/Loader';
+import Message from '../components/Message';
+import Meta from '../components/Meta';
 
-import { listArticleDetails } from "../redux/actions/articleActions";
+import { listArticleDetails } from '../redux/actions/articleActions';
 
 const ArticleDetailsScreen = () => {
   const dispatch = useDispatch();
