@@ -1,5 +1,17 @@
 # MindMate - Google Solution Challenge 2023
 
+## Architecture
+
+```mermaid
+flowchart LR
+  User -->|read articles, ask FAQ bot, and manage appointments| App[React application\nVercel deployment]
+  App --> Firebase[Firebase services]
+  Firebase --> Data[(Realtime Database: appointments and app data)]
+  App --> Bot[FAQ chatbot interface]
+  App --> Articles[Mental health articles]
+  Firebase --> App
+```
+
 > A React.Js and Firebase Web Application that lets the User to Make Appointments with a Mental Health Specialist, Chat with a Bot for basic FAQ's and Read some Articles relating to his Mental Problems..
 
 <!-- PROJECT LOGO -->
@@ -123,3 +135,7 @@ Give ⭐️ if you like this project!
 [license-url]: https://github.com/itxSaaad/MindMate-GSC23/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/itxSaaad
+
+## Vercel Deployment
+Vite SPA served from the repository root; client-side routes rewrite to index.html.
+See the repository-root [vercel.json](./vercel.json) for build roots and routing. Configure private values in Vercel Project Settings; never commit secrets.
